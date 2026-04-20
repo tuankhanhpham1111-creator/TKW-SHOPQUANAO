@@ -1,0 +1,5 @@
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: orange;
+  box-shadow: 0 0 10px rgba(255,165,0,0.5);
+}

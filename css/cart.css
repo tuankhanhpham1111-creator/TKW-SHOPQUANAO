@@ -1,0 +1,9 @@
+/* ================= CART.CSS ================= */
+#cart li {
+  transition: 0.3s;
+}
+
+#cart li:hover {
+  background: #ffe0b2;
+  transform: scale(1.02);
+}

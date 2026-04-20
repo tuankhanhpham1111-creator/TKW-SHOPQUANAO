@@ -1,0 +1,115 @@
+/* ===== PRODUCT PAGE ===== */
+.product-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* ===== ẢNH CHÍNH ===== */
+.main-img {
+  width: 100%;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.main-img:hover {
+  transform: scale(1.03);
+}
+
+/* ===== THUMB ===== */
+.thumbs {
+  display: flex;
+  gap: 10px;
+}
+
+.thumb {
+  width: 70px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.thumb:hover {
+  transform: scale(1.1);
+  border: 2px solid #ff6a00;
+}
+
+/* ===== TÊN ===== */
+.product-name {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* ===== GIÁ ===== */
+.price-box {
+  margin: 15px 0;
+}
+
+.price {
+  color: #ff3c00;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 10px;
+}
+
+/* ===== SIZE ===== */
+.size-btn {
+  display: inline-block;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.size-btn:hover {
+  border-color: #ff6a00;
+}
+
+.size-btn.active {
+  background: #ff6a00;
+  color: white;
+  border-color: #ff6a00;
+}
+
+/* ===== BUTTON ===== */
+.btn-cart {
+  background: #ff6a00;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.btn-cart:hover {
+  background: #e65c00;
+}
+
+/* ===== REVIEW ===== */
+.review-box {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* ===== RELATED ===== */
+.related-card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.related-card:hover {
+  transform: translateY(-5px);
+}

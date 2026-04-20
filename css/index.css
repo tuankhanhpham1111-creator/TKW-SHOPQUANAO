@@ -1,0 +1,264 @@
+.product-card {
+  transition: 0.3s;
+}
+.product-card:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transform: translateY(-10px);
+}
+/* ===== PRODUCT CARD ===== */
+.product-card {
+  transition: 0.3s;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Hover tổng */
+.product-card:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transform: translateY(-10px);
+}
+
+/* ===== IMAGE ===== */
+.product-card img {
+  transition: 0.4s;
+}
+
+/* Zoom ảnh khi hover */
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* ===== TEXT ===== */
+.product-card h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ===== GIÁ ===== */
+.price {
+  color: #ff5722;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* ===== HOVER MƯỢT HƠN ===== */
+.product-card:hover .card-body {
+  background: #fff7f3;
+}
+/* ===== BANNER SLIDER ===== */
+.banner-img {
+  height: 400px;
+  object-fit: cover;
+ 
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .banner-img {
+    height: 200px;
+  }
+}
+
+/* ===== WRAPPER ẢNH ===== */
+.product-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== ẢNH ===== */
+.product-img-wrapper img {
+  transition: 0.4s;
+}
+
+/* Zoom ảnh */
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* ===== BADGE SALE ===== */
+.badge-sale {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff3d00;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+/* ===== TÊN SẢN PHẨM ===== */
+.product-name {
+  font-size: 14px;
+  height: 40px;
+}
+
+/* ===== GIÁ ===== */
+.price {
+  color: #ff5722;
+  font-weight: bold;
+}
+
+/* ===== BUTTON ===== */
+.btn-sm {
+  font-size: 12px;
+}
+
+/* ===== HOVER NÂNG CAO ===== */
+.product-card {
+  transition: 0.3s;
+  border-radius: 10px;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+/* ===== ẢNH ===== */
+.product-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* ===== BADGE ===== */
+.badge-sale {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff3d00;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+/* ===== ICON TIM ===== */
+.wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wishlist:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+/* ===== ADD TO CART ===== */
+.btn-add-cart {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff6a00;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: 0.3s;
+  font-size: 13px;
+}
+
+.product-card:hover .btn-add-cart {
+  bottom: 20px;
+}
+
+/* ===== CARD ===== */
+.product-card {
+  transition: 0.3s;
+  border-radius: 10px;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== TEXT ===== */
+.product-name {
+  font-size: 14px;
+  height: 40px;
+}
+
+/* ===== GIÁ ===== */
+.price-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+  font-size: 13px;
+}
+
+.price {
+  color: #ff5722;
+  font-weight: bold;
+}
+.toast-noti {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ff6a00;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: 0.4s;
+  z-index: 9999;
+}
+
+.toast-noti.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Nút slider */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #ff6a00;
+  border-radius: 50%;
+  padding: 20px;
+}
+
+.section-title h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+/* Đường gạch dưới */
+.section-title .line {
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #ff6a00, #ffb347);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}

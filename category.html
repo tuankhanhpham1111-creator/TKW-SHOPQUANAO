@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh mục - Fashion Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/category.css">
+</head>
+
+<body>
+
+    <!-- HEADER (GIỐNG INDEX) -->
+    <header class="header p-3 text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <h3 class="logo"> Fashion Shop</h3>
+
+            <div class="search-box">
+                <input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchCategory()">
+                <button onclick="searchCategory()">🔍</button>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html">Trang chủ</a>
+                <a href="category.html">Danh mục</a>
+                <a href="cart.html" class="cart-icon">
+                    🛒 <span id="cart-count">0</span>
+                </a>
+                <a href="contact.html">Liên hệ</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <!-- SIDEBAR -->
+            <aside class="col-md-3">
+                <h5>Danh mục</h5>
+                <ul class="category-list">
+                    <li onclick="filterCategory('all')">Tất cả</li>
+                    <li onclick="filterCategory('ao')">Áo</li>
+                    <li onclick="filterCategory('quan')">Quần</li>
+                    <li onclick="filterCategory('hoodie')">Hoodie</li>
+                    <li onclick="filterCategory('giay')">Giày</li>
+                </ul>
+            </aside>
+
+            <!-- PRODUCTS -->
+            <section class="col-md-9">
+                <h3 id="category-title">Tất cả sản phẩm</h3>
+
+                <div class="row g-4">
+
+                    <!-- CARD TEMPLATE -->
+                    <!-- ÁO -->
+                    <div class="col-lg-4 product-item ao">
+                        <div class="card product-card">
+
+                            <div class="product-img-wrapper">
+                                <img src="anh/Quanao/aoDen.png" class="card-img-top">
+
+                                <span class="badge-sale">-20%</span>
+                                <span class="wishlist">❤</span>
+
+                                <button class="btn-add-cart" onclick="addToCartFromCard('Áo thun nam basic')">
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h6 class="product-name">Áo thun nam basic</h6>
+
+                                <div class="price-box">
+                                    <span class="old-price">249.000đ</span>
+                                    <span class="price">199.000đ</span>
+                                </div>
+
+                                <a href="product.html" class="btn btn-warning btn-sm mt-2">Xem chi tiết</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- QUẦN -->
+                    <div class="col-lg-4 product-item quan">
+                        <div class="card product-card">
+
+                            <div class="product-img-wrapper">
+                                <img src="anh/Quanao/Quanden.png">
+
+                                <span class="badge-sale">-15%</span>
+                                <span class="wishlist">❤</span>
+
+                                <button class="btn-add-cart" onclick="addToCartFromCard('Quần jean nam')">
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h6 class="product-name">Quần jean nam</h6>
+
+                                <div class="price-box">
+                                    <span class="old-price">349.000đ</span>
+                                    <span class="price">299.000đ</span>
+                                </div>
+
+                                <a href="product.html" class="btn btn-warning btn-sm mt-2">Xem chi tiết</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- HOODIE -->
+                    <div class="col-lg-4 product-item hoodie">
+                        <div class="card product-card">
+
+                            <div class="product-img-wrapper">
+                                <img src="anh/Quanao/Aohoodie.png">
+
+                                <span class="badge-sale">-10%</span>
+                                <span class="wishlist">❤</span>
+
+                                <button class="btn-add-cart" onclick="addToCartFromCard('Áo hoodie')">
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h6 class="product-name">Áo hoodie</h6>
+
+                                <div class="price-box">
+                                    <span class="old-price">449.000đ</span>
+                                    <span class="price">399.000đ</span>
+                                </div>
+
+                                <a href="product.html" class="btn btn-warning btn-sm mt-2">Xem chi tiết</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- GIÀY -->
+                    <div class="col-lg-4 product-item giay">
+                        <div class="card product-card">
+
+                            <div class="product-img-wrapper">
+                                <img src="anh/Quanao/Giay.png">
+
+                                <span class="badge-sale">-12%</span>
+                                <span class="wishlist">❤</span>
+
+                                <button class="btn-add-cart" onclick="addToCartFromCard('Giày sneaker')">
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h6 class="product-name">Giày sneaker</h6>
+
+                                <div class="price-box">
+                                    <span class="old-price">559.000đ</span>
+                                    <span class="price">499.000đ</span>
+                                </div>
+
+                                <a href="product.html" class="btn btn-warning btn-sm mt-2">
+                                    Xem chi tiết
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <!-- FOOTER (COPY 100% INDEX) -->
+    <footer class="footer text-white pt-5 pb-3">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <h5>Fashion Shop</h5>
+                    <p>Chuyên cung cấp quần áo <br> thời trang chất lượng cao.</p>
+
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/tuan.khanh.618179" target="_blank">
+                            <img src="anh/logo/facebook.png">
+                        </a>
+                        <a href="https://www.instagram.com/durikan_01/" target="_blank">
+                            <img src="anh/logo/instagram.png">
+                        </a>
+                        <a href="https://www.tiktok.com/@jun_qing01" target="_blank">
+                            <img src="anh/logo/tiktok.png">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>Liên kết</h5>
+                    <ul class="footer-link">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="category.html">Danh mục</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>Liên hệ</h5>
+                    <p>Email: tkw@gmail.com</p>
+                    <p>Phone: 0949 805 562</p>
+                    <p>Địa chỉ: Đồng Nai</p>
+
+                    <div class="newsletter mt-3">
+                        <input type="email" placeholder="Nhập email...">
+                        <button onclick="subscribe()">Đăng ký</button>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>Vị trí cửa hàng</h5>
+                    <iframe src="https://www.google.com/maps?q=Đồng%20Nai&output=embed" width="100%"
+                        height="150"></iframe>
+                </div>
+
+            </div>
+
+            <hr class="bg-light">
+
+            <p class="text-center mb-0">
+                © 2026 Fashion Shop | Designed by Tuan Khanh
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- CHAT (COPY INDEX) -->
+    <div id="chat-icon" onclick="toggleChat()">💬</div>
+
+    <div id="chat-box">
+        <div class="chat-header">
+            Hỗ trợ khách hàng
+            <span onclick="toggleChat()">✖</span>
+        </div>
+
+        <div class="chat-body" id="chat-body">
+            <p><b>Shop:</b> Xin chào!</p>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="chat-input">
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-noti"></div>
+
+    <script src="script.js"></script>
+    <script src="category.js"></script>
+</body>
+
+</html>
