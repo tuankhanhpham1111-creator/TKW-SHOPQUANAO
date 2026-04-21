@@ -129,3 +129,37 @@
 }
 
 
+@media (max-width: 576px) {
+  #featured-products {
+    padding: 34px 0 12px;
+  }
+
+  .banner-img {
+    height: 200px;
+    object-position: center center;
+  }
+
+  .view-more-btn {
+    width: 100%;
+    text-align: center;
+    padding: 11px 18px;
+    margin-top: 24px;
+  }
+
+  .category-quick {
+    padding: 26px 0;
+  }
+
+  .category-pill {
+    width: calc(50% - 8px);
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .category-pill {
+    width: 100%;
+  }
+}

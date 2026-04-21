@@ -421,3 +421,31 @@ aside.col-md-3 h5 {
     width: 100%;
   }
 }
+@media (max-width: 576px) {
+  .product-topbar {
+    margin-bottom: 18px;
+  }
+
+  .price-filter-box {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .filter-label {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .price-filter-box button {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .price-filter-box button {
+    flex-basis: 100%;
+  }
+}

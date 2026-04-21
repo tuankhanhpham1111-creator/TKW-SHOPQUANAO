@@ -339,3 +339,25 @@ textarea.form-control {
     flex-direction: column;
   }
 }
+@media (max-width: 576px) {
+  .contact-section,
+  .faq-section {
+    padding: 40px 0;
+  }
+
+  .contact-info-card,
+  .contact-form-wrap,
+  .map-section {
+    padding: 22px 18px;
+  }
+
+  .contact-form-wrap h3,
+  .map-section h4,
+  .faq-section h2 {
+    font-size: 1.35rem;
+  }
+
+  .map-section iframe {
+    height: 240px;
+  }
+}
