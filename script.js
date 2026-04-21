@@ -34,14 +34,17 @@ function addToCartFromCard(product) {
   cart.push({
     name: product.name,
     price: product.price,
-    size: "M", // mặc định (vì index chưa chọn size)
+    image: product.image,
+    size: "M",
     quantity: 1
   });
+
   saveCart(cart);
   updateCartCount();
 
-  showToast(name + " đã thêm vào giỏ 🛒");
+  showToast(product.name + " Đã thêm vào giỏ");
 }
+
 
 // ===== LOAD =====
 document.addEventListener("DOMContentLoaded", function () {

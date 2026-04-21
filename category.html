@@ -48,17 +48,27 @@
                     <li onclick="filterCategory('hoodie')">Hoodie</li>
                     <li onclick="filterCategory('giay')">Giày</li>
                 </ul>
+
+
             </aside>
 
             <!-- PRODUCTS -->
             <section class="col-md-9">
                 <h3 id="category-title">Tất cả sản phẩm</h3>
 
+                <div class="price-filter-box">
+                    <span class="filter-label">Lọc theo giá:</span>
+                    <button onclick="filterPrice('all')">Tất cả</button>
+                    <button onclick="filterPrice('under200')">Dưới 200.000đ</button>
+                    <button onclick="filterPrice('200to400')">200.000đ - 400.000đ</button>
+                    <button onclick="filterPrice('above400')">Trên 400.000đ</button>
+                </div>
+
                 <div class="row g-4">
 
                     <!-- CARD TEMPLATE -->
                     <!-- ÁO -->
-                    <article class="col-lg-4 product-item ao">
+                    <article class="col-lg-4 product-item ao" data-price="199000">
                         <div class="card product-card">
 
                             <div class="product-img-wrapper">
@@ -67,9 +77,13 @@
                                 <span class="badge-sale">-20%</span>
                                 <span class="wishlist">❤</span>
 
-                                <button class="btn-add-cart" onclick="addToCartFromCard('Áo thun nam basic')">
-                                    Thêm vào giỏ
-                                </button>
+                                <button class="btn-add-cart" onclick="addToCartFromCard({
+    name: 'Áo thun nam basic',
+    price: 199000,
+    image: 'anh/Quanao/aoDen.png'
+})">
+    Thêm vào giỏ
+</button>
                             </div>
 
                             <div class="card-body text-center">
@@ -87,7 +101,7 @@
                     </article>
 
                     <!-- QUẦN -->
-                    <article class="col-lg-4 product-item quan">
+                    <article class="col-lg-4 product-item quan" data-price="299000">
                         <div class="card product-card">
 
                             <div class="product-img-wrapper">
@@ -96,9 +110,13 @@
                                 <span class="badge-sale">-15%</span>
                                 <span class="wishlist">❤</span>
 
-                                <button class="btn-add-cart" onclick="addToCartFromCard('Quần jean nam')">
-                                    Thêm vào giỏ
-                                </button>
+                                <button class="btn-add-cart" onclick="addToCartFromCard({
+    name: 'Quần jean nam',
+    price: 299000,
+    image: 'anh/Quanao/Quanden.png'
+})">
+    Thêm vào giỏ
+</button>
                             </div>
 
                             <div class="card-body text-center">
@@ -116,7 +134,7 @@
                     </article>
 
                     <!-- HOODIE -->
-                    <article class="col-lg-4 product-item hoodie">
+                    <article class="col-lg-4 product-item hoodie" data-price="399000">
                         <div class="card product-card">
 
                             <div class="product-img-wrapper">
@@ -125,9 +143,16 @@
                                 <span class="badge-sale">-10%</span>
                                 <span class="wishlist">❤</span>
 
-                                <button class="btn-add-cart" onclick="addToCartFromCard('Áo hoodie')">
-                                    Thêm vào giỏ
-                                </button>
+                               <button class="btn-add-cart" onclick="addToCartFromCard({
+    name: 'Áo hoodie',
+    price: 399000,
+    image: 'anh/Quanao/Aohoodie.png'
+})">
+    Thêm vào giỏ
+</button>
+
+
+
                             </div>
 
                             <div class="card-body text-center">
@@ -145,7 +170,7 @@
                     </article>
 
                     <!-- GIÀY -->
-                    <article class="col-lg-4 product-item giay">
+                    <article class="col-lg-4 product-item giay" data-price="499000">
                         <div class="card product-card">
 
                             <div class="product-img-wrapper">
@@ -154,9 +179,14 @@
                                 <span class="badge-sale">-12%</span>
                                 <span class="wishlist">❤</span>
 
-                                <button class="btn-add-cart" onclick="addToCartFromCard('Giày sneaker')">
-                                    Thêm vào giỏ
-                                </button>
+                               <button class="btn-add-cart" onclick="addToCartFromCard({
+    name: 'Giày sneaker',
+    price: 499000,
+    image: 'anh/Quanao/Giay.png'
+})">
+    Thêm vào giỏ
+</button>
+
                             </div>
 
                             <div class="card-body text-center">

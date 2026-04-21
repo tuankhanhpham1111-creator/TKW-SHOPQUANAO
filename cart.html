@@ -215,36 +215,46 @@
                 const name = typeof item === "string" ? item : item.name;
                 const size = typeof item === "object" ? (item.size || "") : "";
                 const price = typeof item === "object" ? (item.price || 0) : 0;
+                const image = typeof item === "object" ? (item.image || "") : "";
                 const key = name + "__" + size;
 
                 if (!grouped[key]) {
-                    grouped[key] = { name, price, size, qty: 0, key };
+                    grouped[key] = { name, price, size, image, qty: 0, key };
                 }
                 grouped[key].qty++;
             });
+
+
 
             let html = "";
             Object.values(grouped).forEach(item => {
                 const lineTotal = item.price * item.qty;
                 html += `
-                <li class="cart-item">
-                    <div class="cart-item-info">
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-meta">
-                            ${item.size ? `<span class="cart-size">Size: <b>${item.size}</b></span>` : ""}
-                            ${item.price ? `<span class="cart-price">${item.price.toLocaleString()}đ / cái</span>` : ""}
-                        </div>
-                    </div>
-                    <div class="cart-item-controls">
-                        <button class="qty-btn" onclick="changeQty('${item.key}', -1)">−</button>
-                        <span class="qty-num">${item.qty}</span>
-                        <button class="qty-btn" onclick="changeQty('${item.key}', 1)">+</button>
-                    </div>
-                    <div class="cart-item-total">
-                        ${lineTotal ? lineTotal.toLocaleString() + "đ" : ""}
-                    </div>
-                    <button class="cart-item-remove" onclick="removeItem('${item.key}')">✕</button>
-                </li>`;
+<li class="cart-item">
+    <div class="cart-item-image">
+        <img src="${item.image}" alt="${item.name}">
+    </div>
+
+    <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-meta">
+            ${item.size ? `<span class="cart-size">Size: <b>${item.size}</b></span>` : ""}
+            ${item.price ? `<span class="cart-price">${item.price.toLocaleString()}đ / cái</span>` : ""}
+        </div>
+    </div>
+
+    <div class="cart-item-controls">
+        <button class="qty-btn" onclick="changeQty('${item.key}', -1)">−</button>
+        <span class="qty-num">${item.qty}</span>
+        <button class="qty-btn" onclick="changeQty('${item.key}', 1)">+</button>
+    </div>
+
+    <div class="cart-item-total">
+        ${lineTotal ? lineTotal.toLocaleString() + "đ" : ""}
+    </div>
+
+    <button class="cart-item-remove" onclick="removeItem('${item.key}')">✕</button>
+</li>`;
             });
 
             cartList.innerHTML = html;

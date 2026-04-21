@@ -289,3 +289,135 @@ aside.col-md-3 h5 {
     padding: 18px 16px 20px;
   }
 }
+aside.col-md-3 {
+  position: sticky;
+  top: 90px;
+  align-self: flex-start;
+}
+
+aside.col-md-3 h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 14px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 14px;
+  margin: 0 0 22px 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(26, 26, 46, 0.06);
+}
+
+.category-list li {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.category-list li + li {
+  margin-top: 6px;
+}
+
+.category-list li:hover {
+  background: rgba(232, 163, 23, 0.1);
+  color: var(--text-dark);
+  transform: translateX(4px);
+}
+
+.category-list li:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 991px) {
+  aside.col-md-3 {
+    position: static;
+    margin-bottom: 24px;
+  }
+
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .category-list li {
+    margin-top: 0 !important;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: #fff;
+  }
+}
+.category-list li.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+.product-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.product-topbar h3 {
+  margin-bottom: 0;
+}
+
+.price-filter-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 24px rgba(26, 26, 46, 0.05);
+}
+
+.filter-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.price-filter-box button {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.price-filter-box button:hover {
+  background: var(--accent);
+  color: var(--primary);
+  border-color: var(--accent);
+}
+@media (max-width: 768px) {
+  .product-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .price-filter-box {
+    width: 100%;
+  }
+}
