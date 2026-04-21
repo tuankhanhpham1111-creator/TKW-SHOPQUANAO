@@ -4,24 +4,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liên hệ</title>
+    <title>Liên Hệ – Fashion Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>
-    <header class="p-3 text-white">
-        <h3 class="text-center">Liên hệ</h3>
+
+    <!-- HEADER -->
+    <header class="header text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- LOGO -->
+            <a href="index.html" class="logo">Fashion<span>Shop</span></a>
+
+            <!-- SEARCH -->
+            <div class="search-box">
+                <input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchProduct()">
+                <button onclick="searchProduct()">🔍</button>
+            </div>
+
+            <!-- MENU -->
+            <nav class="nav-menu">
+                <a href="index.html">Trang chủ</a>
+                <a href="category.html">Danh mục</a>
+                <a href="cart.html" class="cart-icon">
+                    🛒 <span id="cart-count">0</span>
+                </a>
+                <a href="contact.html" class="active">Liên hệ</a>
+            </nav>
+
+        </div>
     </header>
-    <section class="container mt-4">
-        <form class="contact-form">
-            <input class="form-control mb-2" placeholder="Tên">
-            <input class="form-control mb-2" placeholder="Email">
-            <textarea class="form-control mb-2" placeholder="Nội dung"></textarea>
-            <button class="btn btn-warning">Gửi</button>
-        </form>
+
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Liên Hệ Với Chúng Tôi</h1>
+            <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn</p>
+            <div class="breadcrumb-nav">
+                <a href="index.html">Trang chủ</a>
+                <span>›</span>
+                <span class="current">Liên hệ</span>
+            </div>
+        </div>
     </section>
+
+    <!-- CONTACT INFO CARDS -->
+    <section class="contact-section">
+        <div class="container">
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-3 col-sm-6">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">📍</div>
+                        <h6>Địa chỉ</h6>
+                        <p>Đồng Nai, Việt Nam</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">📞</div>
+                        <h6>Điện thoại</h6>
+                        <p><a href="tel:0949805562">0949 805 562</a></p>
+                        <p style="font-size:0.78rem; margin-top:4px;">T2 – CN: 8:00 – 21:00</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">✉️</div>
+                        <h6>Email</h6>
+                        <p><a href="mailto:tkw@gmail.com">tkw@gmail.com</a></p>
+                        <p style="font-size:0.78rem; margin-top:4px;">Phản hồi trong 24h</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">🚚</div>
+                        <h6>Giao hàng</h6>
+                        <p>Miễn phí đơn từ 500K</p>
+                        <p style="font-size:0.78rem; margin-top:4px;">Toàn quốc 2–5 ngày</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT: FORM + SIDEBAR -->
+            <div class="row g-4">
+
+                <!-- FORM -->
+                <div class="col-lg-7">
+                    <div class="contact-form-wrap">
+                        <h3>Gửi tin nhắn cho chúng tôi</h3>
+                        <p class="subtitle">Điền thông tin bên dưới, chúng tôi sẽ phản hồi sớm nhất có thể.</p>
+
+                        <div id="contact-form">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Họ và tên <span style="color:#e74c3c">*</span></label>
+                                    <input type="text" id="cf-name" class="form-control" placeholder="Nguyễn Văn A">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <input type="tel" id="cf-phone" class="form-control" placeholder="09xx xxx xxx">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Email <span style="color:#e74c3c">*</span></label>
+                                    <input type="email" id="cf-email" class="form-control"
+                                        placeholder="example@email.com">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Chủ đề</label>
+                                    <select id="cf-subject" class="form-control">
+                                        <option value="">-- Chọn chủ đề --</option>
+                                        <option value="donhang">Hỏi về đơn hàng</option>
+                                        <option value="sanpham">Tư vấn sản phẩm</option>
+                                        <option value="doisize">Đổi size / Trả hàng</option>
+                                        <option value="khuyenmai">Khuyến mãi & Ưu đãi</option>
+                                        <option value="khac">Vấn đề khác</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Nội dung <span style="color:#e74c3c">*</span></label>
+                                    <textarea id="cf-message" class="form-control"
+                                        placeholder="Nhập nội dung câu hỏi hoặc góp ý của bạn..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn-submit" onclick="submitContact()">
+                                        Gửi tin nhắn ✉️
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SUCCESS MESSAGE -->
+                        <div class="success-msg" id="success-msg">
+                            <span class="check-icon">✅</span>
+                            <h6>Gửi thành công!</h6>
+                            <p>Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi trong vòng 24 giờ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="col-lg-5 d-flex flex-column gap-4">
+
+                    <!-- HOURS -->
+                    <div class="map-section">
+                        <h4>Giờ làm việc</h4>
+                        <p class="map-desc">Cửa hàng mở cửa mỗi ngày trong tuần</p>
+                        <table class="hours-table">
+                            <tr>
+                                <td class="day">Thứ 2 – Thứ 6</td>
+                                <td class="time">08:00 – 21:00</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Thứ 7</td>
+                                <td class="time">08:00 – 22:00</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Chủ nhật</td>
+                                <td class="time">09:00 – 20:00</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Ngày lễ</td>
+                                <td class="closed">Liên hệ trước</td>
+                            </tr>
+                        </table>
+                        <!-- SOCIAL -->
+                        <div class="social-contact mt-3">
+                            <a href="https://www.facebook.com/tuan.khanh.618179" target="_blank">
+                                <img src="anh/logo/facebook.png" alt="Facebook"> Facebook
+                            </a>
+                            <a href="https://www.instagram.com/durikan_01/" target="_blank">
+                                <img src="anh/logo/instagram.png" alt="Instagram"> Instagram
+                            </a>
+                            <a href="https://www.tiktok.com/@jun_qing01" target="_blank">
+                                <img src="anh/logo/tiktok.png" alt="TikTok"> TikTok
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- MAP -->
+                    <div class="map-section">
+                        <h4>Vị trí cửa hàng</h4>
+                        <p class="map-desc">📍 Đồng Nai, Việt Nam</p>
+                        <iframe src="https://www.google.com/maps?q=Biên+Hòa,+Đồng+Nai,+Việt+Nam&output=embed"
+                            loading="lazy" allowfullscreen>
+                        </iframe>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Câu hỏi thường gặp</h2>
+                <span class="line"
+                    style="display:block;width:60px;height:3px;background:var(--accent);margin:12px auto 0;border-radius:2px;"></span>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    🚚 Chính sách giao hàng như thế nào?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Miễn phí giao hàng toàn quốc cho đơn từ <strong>500.000đ</strong>. Đơn dưới 500K phí
+                                    giao dao động 15.000đ – 30.000đ tùy khu vực. Thời gian giao hàng từ <strong>2–5 ngày
+                                        làm việc</strong>. Khu vực Hồ Chí Minh & Đồng Nai giao trong <strong>1–2
+                                        ngày</strong>.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    🔄 Tôi có thể đổi size hoặc trả hàng không?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Bạn có thể đổi size hoặc trả hàng trong <strong>7 ngày</strong> kể từ khi nhận hàng.
+                                    Điều kiện: sản phẩm còn nguyên tem nhãn, chưa giặt, chưa có dấu hiệu đã sử dụng.
+                                    Liên hệ hotline <strong>0949 805 562</strong> hoặc nhắn tin fanpage để được hỗ trợ
+                                    nhanh nhất.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    💳 Fashion Shop hỗ trợ những hình thức thanh toán nào?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Chúng tôi hỗ trợ các hình thức: <strong>Thanh toán khi nhận hàng (COD)</strong>,
+                                    chuyển khoản ngân hàng (Vietcombank, MB Bank, Techcombank), ví điện tử <strong>MoMo,
+                                        ZaloPay, VNPay</strong>. Tất cả giao dịch đều được bảo mật an toàn.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
+                                    📦 Làm thế nào để theo dõi đơn hàng?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sau khi đơn hàng được xác nhận, bạn sẽ nhận được <strong>mã vận đơn</strong> qua SMS
+                                    hoặc email. Bạn có thể tra cứu trên website của đơn vị vận chuyển (Giao Hàng Nhanh,
+                                    GHTK, J&T). Nếu cần hỗ trợ, liên hệ shop kèm mã đơn hàng.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq5">
+                                    🎁 Fashion Shop có chương trình khách hàng thân thiết không?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Có! Khách hàng mua từ <strong>3 đơn trở lên</strong> sẽ được tích điểm và nhận ưu
+                                    đãi đặc biệt. Theo dõi fanpage Facebook và TikTok để cập nhật các chương trình flash
+                                    sale, voucher giảm giá hàng tuần. Đăng ký newsletter để nhận mã giảm giá
+                                    <strong>10%</strong> ngay!
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer text-white pt-5 pb-3">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- CỘT 1 -->
+                <div class="col-md-3">
+                    <h5>Fashion Shop</h5>
+                    <p>Chuyên cung cấp quần áo<br> thời trang chất lượng cao.</p>
+
+                    <!-- SOCIAL -->
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/tuan.khanh.618179" target="_blank">
+                            <img src="anh/logo/facebook.png" alt="Facebook">
+                        </a>
+
+                        <a href="https://www.instagram.com/durikan_01/" target="_blank">
+                            <img src="anh/logo/instagram.png" alt="Instagram">
+                        </a>
+
+                        <a href="https://www.tiktok.com/@jun_qing01" target="_blank">
+                            <img src="anh/logo/tiktok.png" alt="TikTok">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CỘT 2 -->
+                <div class="col-md-3">
+                    <h5>Liên kết</h5>
+                    <ul class="footer-link">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="category.html">Danh mục</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- CỘT 3 -->
+                <div class="col-md-3">
+                    <h5>Liên hệ</h5>
+                    <p>Email: tkw@gmail.com</p>
+                    <p>Phone: 0949 805 562</p>
+                    <p>Địa chỉ: Đồng Nai</p>
+
+                    <!-- NEWSLETTER -->
+                    <div class="newsletter mt-3">
+                        <input type="email" placeholder="Nhập email...">
+                        <button onclick="subscribe()">Đăng ký</button>
+                    </div>
+                </div>
+
+                <!-- CỘT 4 (MAP) -->
+                <div class="col-md-3">
+                    <h5>Vị trí cửa hàng</h5>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps?q=Đồng%20Nai&output=embed" width="100%" height="150"
+                            style="border:0;" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="bg-light">
+
+            <p class="text-center mb-0">
+                © 2026 Fashion Shop | All rights reserved <br>Designed by <a
+                    href="https://www.facebook.com/tuan.khanh.618179" target="_blank">Tuan Khanh</a> | 23-0-20076
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- CHAT ICON -->
+    <div id="chat-icon" onclick="toggleChat()">💬</div>
+
+    <!-- CHAT BOX -->
+    <div id="chat-box">
+        <div class="chat-header">
+            💬 Hỗ trợ khách hàng
+            <span onclick="toggleChat()">✖</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <p><b>Shop:</b> Xin chào! Bạn cần hỗ trợ gì không? 😊</p>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Nhập tin nhắn...">
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast-noti"></div>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+    <script>
+        // Contact Form Submit
+        function submitContact() {
+            const name = document.getElementById('cf-name').value.trim();
+            const email = document.getElementById('cf-email').value.trim();
+            const message = document.getElementById('cf-message').value.trim();
+
+            if (!name) {
+                showToast('⚠️ Vui lòng nhập họ và tên!');
+                document.getElementById('cf-name').focus();
+                return;
+            }
+            if (!email || !email.includes('@')) {
+                showToast('⚠️ Vui lòng nhập email hợp lệ!');
+                document.getElementById('cf-email').focus();
+                return;
+            }
+            if (!message) {
+                showToast('⚠️ Vui lòng nhập nội dung tin nhắn!');
+                document.getElementById('cf-message').focus();
+                return;
+            }
+
+            // Simulate submit
+            document.getElementById('contact-form').style.opacity = '0.5';
+            document.getElementById('contact-form').style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                document.getElementById('contact-form').style.display = 'none';
+                document.getElementById('success-msg').classList.add('show');
+                showToast('✅ Gửi tin nhắn thành công!');
+            }, 800);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            if (toast) {
+                toast.textContent = msg;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+        }
+
+        // Update cart count from localStorage if script.js sets it
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const count = document.getElementById('cart-count');
+            if (count) count.textContent = cart.length;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

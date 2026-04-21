@@ -2,354 +2,1080 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Chi tiết sản phẩm</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        .main-img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .thumb {
-            width: 70px;
-            cursor: pointer;
-            margin: 5px;
-            border-radius: 5px;
-        }
-
-        .thumb:hover {
-            border: 2px solid orange;
-        }
-
-        .size-btn {
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-            margin-right: 5px;
-            cursor: pointer;
-        }
-
-        .size-btn.active {
-            background: orange;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Sản phẩm – Fashion Shop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/product.css">
 </head>
 
 <body>
 
-    <header class="header p-3 text-white">
-        <div class="container d-flex justify-content-between align-items-center">
-
-            <!-- LOGO -->
-            <h3 class="logo"> Fashion Shop</h3>
-
-            <!-- SEARCH -->
-            <div class="search-box">
-
-                <input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchProduct()">
-                <button onclick="searchProduct()">🔍</button>
-            </div>
-
-            <!-- MENU -->
-            <nav class="nav-menu">
-                <a href="index.html">Trang chủ</a>
-                <a href="category.html">Danh mục</a>
-
-                <a href="cart.html" class="cart-icon">
-                    🛒 <span id="cart-count">0</span>
-                </a>
-
-                <a href="contact.html">Liên hệ</a>
-            </nav>
-
-        </div>
-    </header>
-
-    <div class="container mt-5">
-        <div class="row">
-
-            <!-- IMAGE -->
-            <div class="col-md-6">
-                <img id="main-img" class="main-img">
-                <div id="thumbs" class="d-flex mt-3"></div>
-            </div>
-
-            <!-- INFO -->
-            <div class="col-md-6">
-                <h2 id="name"></h2>
-
-                <div>
-                    <span id="old" style="text-decoration: line-through;"></span>
-                    <span id="price" style="color:red;font-size:20px;"></span>
-                </div>
-
-                <p id="desc">Sản phẩm thời trang cao cấp</p>
-
-                <!-- SIZE -->
-                <div class="mt-3">
-                    <b>Size:</b>
-                    <div id="sizes"></div>
-                </div>
-
-                <button class="btn btn-warning mt-3" onclick="addToCart()">
-                    Thêm vào giỏ
-                </button>
-            </div>
-
-        </div>
-
-        <!-- REVIEW -->
-        <div class="mt-5">
-            <h4>Đánh giá</h4>
-            <div id="reviews"></div>
-
-            <input id="review-input" class="form-control mt-2" placeholder="Viết đánh giá...">
-            <button class="btn btn-dark mt-2" onclick="addReview()">Gửi</button>
-        </div>
-
-        <!-- RELATED -->
-        <div class="mt-5">
-            <h4>Sản phẩm liên quan</h4>
-            <div id="related" class="row"></div>
-        </div>
-
+  <!-- PAGE LOADER -->
+  <div id="page-loader">
+    <div class="loader-logo">FashionShop</div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill"></div>
     </div>
-    <footer class="footer text-white pt-5 pb-3">
-        <div class="container">
+  </div>
 
-            <div class="row">
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
 
-                <!-- CỘT 1 -->
-                <div class="col-md-3">
-                    <h5>Fashion Shop</h5>
-                    <p>Chuyên cung cấp quần áo<br> thời trang chất lượng cao.</p>
+  <!-- BACK TO TOP -->
+  <div id="back-to-top" title="Lên đầu trang">↑</div>
 
-                    <!-- SOCIAL -->
-                    <div class="social-icons mt-3">
-                        <a href="https://www.facebook.com/tuan.khanh.618179" target="_blank">
-                            <img src="anh/logo/facebook.png" alt="Facebook">
-                        </a>
+  <!-- HEADER -->
+  <header class="header text-white">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="index.html" class="logo">Fashion<span>Shop</span></a>
+      <div class="search-box">
+        <input type="text" placeholder="Tìm sản phẩm...">
+        <button>🔍</button>
+      </div>
+      <nav class="nav-menu">
+        <a href="index.html">Trang chủ</a>
+        <a href="category.html">Danh mục</a>
+        <a href="cart.html" class="cart-icon">🛒 <span id="cart-count">0</span></a>
+        <a href="contact.html">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
 
-                        <a href="https://www.instagram.com/durikan_01/" target="_blank">
-                            <img src="anh/logo/instagram.png" alt="Instagram">
-                        </a>
+  <!-- BREADCRUMB -->
+  <div class="product-breadcrumb">
+    <div class="container">
+      <a href="index.html">Trang chủ</a>
+      <span>›</span>
+      <a href="category.html">Sản phẩm</a>
+      <span>›</span>
+      <span class="current" id="bc-name">Đang tải...</span>
+    </div>
+  </div>
 
-                        <a href="https://www.tiktok.com/@jun_qing01" target="_blank">
-                            <img src="anh/logo/tiktok.png" alt="TikTok">
-                        </a>
-                    </div>
-                </div>
+  <!-- MAIN PRODUCT AREA -->
+  <section class="product-main">
+    <div class="container">
+      <div class="row g-5">
 
-                <!-- CỘT 2 -->
-                <div class="col-md-3">
-                    <h5>Liên kết</h5>
-                    <ul class="footer-link">
-                        <li><a href="index.html">Trang chủ</a></li>
-                        <li><a href="category.html">Danh mục</a></li>
-                        <li><a href="cart.html">Giỏ hàng</a></li>
-                        <li><a href="contact.html">Liên hệ</a></li>
-                    </ul>
-                </div>
+        <!-- LEFT: GALLERY -->
+        <div class="col-lg-5">
+          <div class="gallery-wrapper reveal-left">
 
-                <!-- CỘT 3 -->
-                <div class="col-md-3">
-                    <h5>Liên hệ</h5>
-                    <p>Email: tkw@gmail.com</p>
-                    <p>Phone: 0949 805 562</p>
-                    <p>Địa chỉ: Đồng Nai</p>
-
-                    <!-- NEWSLETTER -->
-                    <div class="newsletter mt-3">
-                        <input type="email" placeholder="Nhập email...">
-                        <button onclick="subscribe()">Đăng ký</button>
-                    </div>
-                </div>
-
-                <!-- CỘT 4 (MAP) -->
-                <div class="col-md-3">
-                    <h5>Vị trí cửa hàng</h5>
-
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps?q=Đồng%20Nai&output=embed" width="100%" height="150"
-                            style="border:0;" loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-
+            <div class="gallery-main" id="gallery-main" onclick="toggleZoom(this)">
+              <img id="main-img" src="" alt="">
+              <span class="gallery-badge" id="gallery-badge">-20%</span>
+              <button class="gallery-wishlist" id="gallery-wishlist" onclick="toggleWishlistPage(event)">🤍</button>
             </div>
 
-            <hr class="bg-light">
+            <div class="gallery-thumbs" id="gallery-thumbs"></div>
 
-            <p class="text-center mb-0">
-                © 2026 Fashion Shop | All rights reserved <br>Designed by <a
-                    href="https://www.facebook.com/tuan.khanh.618179" target="_blank">Tuan Khanh</a> | 23-0-20076
-            </p>
-
-        </div>
-    </footer>
-
-    <!-- CHAT ICON -->
-    <div id="chat-icon" onclick="toggleChat()">
-        💬
-    </div>
-
-    <!-- CHAT BOX -->
-    <div id="chat-box">
-        <div class="chat-header">
-            Hỗ trợ khách hàng
-            <span onclick="toggleChat()">✖</span>
-        </div>
-
-        <div class="chat-body" id="chat-body">
-            <p><b>Shop:</b> Xin chào! Bạn cần hỗ trợ gì?</p>
-        </div>
-
-        <div class="chat-footer">
-            <input type="text" id="chat-input" placeholder="Nhập tin nhắn...">
-            <button onclick="sendMessage()">Gửi</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-
-    <script>
-        let product = JSON.parse(localStorage.getItem("currentProduct"));
-
-        let selectedSize = "";
-
-        // LOAD
-        document.addEventListener("DOMContentLoaded", () => {
-            if (!product) return alert("Không có sản phẩm!");
-
-            document.getElementById("name").innerText = product.name;
-            document.getElementById("price").innerText = product.price + "đ";
-            document.getElementById("old").innerText = product.old + "đ";
-
-            // IMAGE
-            document.getElementById("main-img").src = product.images[0];
-
-            let thumbs = "";
-            product.images.forEach(img => {
-                thumbs += `<img src="${img}" class="thumb" onclick="changeImg('${img}')">`;
-            });
-            document.getElementById("thumbs").innerHTML = thumbs;
-
-            // SIZE
-            let sizes = ["S", "M", "L", "XL"];
-            let html = "";
-            sizes.forEach(s => {
-                html += `<span class="size-btn" onclick="selectSize(this,'${s}')">${s}</span>`;
-            });
-            document.getElementById("sizes").innerHTML = html;
-
-            loadReviews();
-            loadRelated();
-        });
-
-        // IMAGE
-        function changeImg(src) {
-            document.getElementById("main-img").src = src;
-        }
-
-        // SIZE
-        function selectSize(el, size) {
-            document.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
-            el.classList.add("active");
-            selectedSize = size;
-        }
-
-        // ADD CART
-        function addToCart() {
-            if (!selectedSize) {
-                alert("Chọn size!");
-                return;
-            }
-
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-            cart.push({
-                name: product.name,
-                price: product.price,
-                size: selectedSize
-            });
-
-            localStorage.setItem("cart", JSON.stringify(cart));
-
-            alert("Đã thêm vào giỏ!");
-        }
-
-        // REVIEW
-        function loadReviews() {
-            let reviews = JSON.parse(localStorage.getItem(product.name + "_rv")) || [];
-            let html = "";
-            reviews.forEach(r => html += `<p>⭐ ${r}</p>`);
-            document.getElementById("reviews").innerHTML = html;
-        }
-
-        function addReview() {
-            let input = document.getElementById("review-input");
-            let val = input.value.trim();
-            if (!val) return;
-
-            let reviews = JSON.parse(localStorage.getItem(product.name + "_rv")) || [];
-            reviews.push(val);
-
-            localStorage.setItem(product.name + "_rv", JSON.stringify(reviews));
-
-            input.value = "";
-            loadReviews();
-        }
-
-        // RELATED
-        function loadRelated() {
-            let list = JSON.parse(localStorage.getItem("allProducts")) || [];
-
-            let html = "";
-
-            list.forEach((p, index) => {
-                if (p.name !== product.name) {
-
-                    html += `
-        <div class="col-md-3">
-          <div class="card p-2">
-            <img src="${p.images[0]}" style="width:100%">
-            <p>${p.name}</p>
-
-            <button onclick="goToProductByIndex(${index})">
-              Xem
-            </button>
           </div>
         </div>
-      `;
-                }
-            });
 
-            document.getElementById("related").innerHTML = html;
+        <!-- RIGHT: INFO -->
+        <div class="col-lg-7 reveal-right">
+          <div class="product-info">
+
+            <span class="product-category-tag" id="prod-category">Thời Trang Nam</span>
+            <h1 class="product-title" id="prod-title">Đang tải sản phẩm...</h1>
+
+            <!-- Rating -->
+            <div class="product-rating-row">
+              <div class="stars-display" id="stars-display"></div>
+              <span class="rating-score" id="rating-score">4.7</span>
+              <span class="rating-sep">|</span>
+              <span class="rating-count" id="rating-count">0 đánh giá</span>
+              <span class="rating-sep">|</span>
+              <span class="sold-count" id="sold-count">Đã bán 0</span>
+            </div>
+
+            <!-- Price -->
+            <div class="product-price-block">
+              <div class="product-price">
+                <span id="prod-price">—</span>
+                <span class="product-old-price" id="prod-old">—</span>
+                <span class="product-saving" id="prod-saving"></span>
+              </div>
+            </div>
+
+            <div class="product-divider"></div>
+
+            <!-- Color -->
+            <div class="mb-3">
+              <div class="option-label">Màu sắc: <span class="selected-val" id="selected-color">Đen</span></div>
+              <div class="color-options" id="color-options">
+                <div class="color-swatch active" style="background:#1a1a1a;" data-color="Đen"
+                  onclick="selectColor(this)" title="Đen"></div>
+                <div class="color-swatch" style="background:#fff;border:1.5px solid #ddd;" data-color="Trắng"
+                  onclick="selectColor(this)" title="Trắng"></div>
+                <div class="color-swatch" style="background:#6b7280;" data-color="Xám" onclick="selectColor(this)"
+                  title="Xám"></div>
+                <div class="color-swatch" style="background:#1e3a5f;" data-color="Navy" onclick="selectColor(this)"
+                  title="Navy"></div>
+                <div class="color-swatch" style="background:#a0522d;" data-color="Nâu" onclick="selectColor(this)"
+                  title="Nâu"></div>
+              </div>
+            </div>
+
+            <!-- Size -->
+            <div class="mb-1">
+              <div class="option-label">Size: <span class="selected-val" id="selected-size">L</span></div>
+              <div class="size-options-row" id="size-options">
+                <button class="size-opt" onclick="selectSize(this)">S</button>
+                <button class="size-opt" onclick="selectSize(this)">M</button>
+                <button class="size-opt active" onclick="selectSize(this)">L</button>
+                <button class="size-opt" onclick="selectSize(this)">XL</button>
+                <button class="size-opt out-of-stock" onclick="selectSize(this)" disabled>XXL</button>
+              </div>
+              <a href="#" class="size-guide-link" onclick="openSizeGuide(event)">📏 Hướng dẫn chọn size →</a>
+            </div>
+
+            <div class="product-divider"></div>
+
+            <!-- Quantity + stock -->
+            <div class="qty-row-main">
+              <div class="option-label">Số lượng:</div>
+              <div class="qty-ctrl">
+                <button class="qty-btn-main" onclick="changeQty(-1)">−</button>
+                <input class="qty-num" id="qty-input" type="number" value="1" min="1" max="99">
+                <button class="qty-btn-main" onclick="changeQty(1)">+</button>
+              </div>
+              <span class="stock-badge in-stock" id="stock-badge">✓ Còn hàng</span>
+            </div>
+
+            <!-- CTA -->
+            <div class="product-cta">
+              <button class="btn-buy-now" onclick="buyNow()"><span>⚡ Mua ngay</span></button>
+              <button class="btn-add-cart-main" onclick="addToCartMain()">🛒 Thêm vào giỏ</button>
+              <button class="btn-share" onclick="toggleShare()" title="Chia sẻ">🔗</button>
+            </div>
+
+            <!-- Share panel -->
+            <div class="share-panel" id="share-panel">
+              <span>Chia sẻ:</span>
+              <button class="share-btn" onclick="shareTo('facebook')">📘 Facebook</button>
+              <button class="share-btn" onclick="shareTo('zalo')">💬 Zalo</button>
+              <button class="share-btn" onclick="copyLink()">🔗 Copy link</button>
+            </div>
+
+            <!-- Perks -->
+            <div class="product-perks">
+              <div class="perk-item"><span class="perk-icon">🚚</span> Miễn phí ship đơn 500K+</div>
+              <div class="perk-item"><span class="perk-icon">🔄</span> Đổi trả 7 ngày</div>
+              <div class="perk-item"><span class="perk-icon">🛡️</span> Hàng chính hãng</div>
+              <div class="perk-item"><span class="perk-icon">💳</span> COD / MoMo / VNPay</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="product-tabs reveal">
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="switchTab('desc',this)">Mô tả sản phẩm</button>
+          <button class="tab-btn" onclick="switchTab('specs',this)">Thông số</button>
+          <button class="tab-btn" onclick="switchTab('reviews',this)">Đánh giá <span id="review-tab-count"
+              style="font-size:.75rem;opacity:.7;"></span></button>
+          <button class="tab-btn" onclick="switchTab('shipping',this)">Vận chuyển & Đổi trả</button>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="tab-content active" id="tab-desc">
+          <div class="desc-prose" id="prod-desc">
+            <h5>Giới thiệu sản phẩm</h5>
+            <p>Sản phẩm đang được tải...</p>
+          </div>
+        </div>
+
+        <!-- SPECS -->
+        <div class="tab-content" id="tab-specs">
+          <table class="specs-table" id="specs-table"></table>
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="tab-content" id="tab-reviews">
+          <div class="review-summary">
+            <div style="text-align:center;flex-shrink:0;">
+              <div class="review-score-big" id="rs-score">4.7<span>/5</span></div>
+              <div class="review-stars-big"><span>★★★★★</span></div>
+              <div class="review-total" id="rs-total">0 đánh giá</div>
+            </div>
+            <div class="rating-bars" id="rating-bars"></div>
+          </div>
+          <div id="reviews-list"></div>
+          <button class="write-review-btn" onclick="showReviewForm()">✏️ Viết đánh giá</button>
+
+          <!-- Write review form (hidden by default) -->
+          <div id="review-form-wrap"
+            style="display:none; margin-top:24px; background:#fff; border:1px solid var(--border); border-radius:14px; padding:24px; animation:fadeSlideIn .35s ease;">
+            <h6 style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:700; margin-bottom:16px;">
+              Viết đánh giá của bạn</h6>
+            <div style="margin-bottom:14px;">
+              <label style="font-size:.82rem; font-weight:600; display:block; margin-bottom:8px;">Đánh giá:</label>
+              <div id="star-picker" style="display:flex; gap:6px; font-size:1.8rem; cursor:pointer;">
+                <span onclick="setReviewStar(1)" onmouseover="hoverStar(1)" onmouseout="unhoverStar()">☆</span>
+                <span onclick="setReviewStar(2)" onmouseover="hoverStar(2)" onmouseout="unhoverStar()">☆</span>
+                <span onclick="setReviewStar(3)" onmouseover="hoverStar(3)" onmouseout="unhoverStar()">☆</span>
+                <span onclick="setReviewStar(4)" onmouseover="hoverStar(4)" onmouseout="unhoverStar()">☆</span>
+                <span onclick="setReviewStar(5)" onmouseover="hoverStar(5)" onmouseout="unhoverStar()">☆</span>
+              </div>
+            </div>
+            <input id="rv-name" type="text" placeholder="Tên của bạn"
+              style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.875rem;outline:none;margin-bottom:10px;">
+            <textarea id="rv-text" placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."
+              style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.875rem;outline:none;resize:vertical;min-height:100px;margin-bottom:14px;"></textarea>
+            <div style="display:flex; gap:10px;">
+              <button onclick="submitReview()"
+                style="background:var(--primary);color:#fff;border:none;border-radius:50px;padding:11px 28px;font-family:'DM Sans',sans-serif;font-weight:700;cursor:pointer;transition:var(--transition);"
+                onmouseover="this.style.background='var(--accent)';this.style.color='var(--primary)'"
+                onmouseout="this.style.background='var(--primary)';this.style.color='#fff'">Gửi đánh giá</button>
+              <button onclick="document.getElementById('review-form-wrap').style.display='none'"
+                style="background:#f0ede8;border:none;border-radius:50px;padding:11px 20px;font-family:'DM Sans',sans-serif;cursor:pointer;">Huỷ</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHIPPING -->
+        <div class="tab-content" id="tab-shipping">
+          <div class="desc-prose">
+            <h5>🚚 Chính sách giao hàng</h5>
+            <ul>
+              <li><strong>Miễn phí giao hàng</strong> toàn quốc cho đơn từ 500.000đ</li>
+              <li>Đơn dưới 500K: phí 15.000đ – 30.000đ tùy khu vực</li>
+              <li>Thời gian: <strong>2–5 ngày làm việc</strong> (Đồng Nai & TP.HCM: 1–2 ngày)</li>
+              <li>Đơn vị vận chuyển: GHN, GHTK, J&T</li>
+            </ul>
+            <h5>🔄 Chính sách đổi trả</h5>
+            <ul>
+              <li>Đổi trả <strong>miễn phí trong 7 ngày</strong> kể từ khi nhận hàng</li>
+              <li>Điều kiện: còn nguyên tem nhãn, chưa giặt, chưa sử dụng</li>
+              <li>Lỗi do nhà sản xuất: đổi mới 100%, shop chịu phí vận chuyển</li>
+              <li>Liên hệ: <strong>0949 805 562</strong> hoặc email <strong>tkw@gmail.com</strong></li>
+            </ul>
+            <h5>💳 Hình thức thanh toán</h5>
+            <ul>
+              <li>Thanh toán khi nhận hàng (COD)</li>
+              <li>Chuyển khoản ngân hàng (Vietcombank, MB, Techcombank)</li>
+              <li>Ví điện tử: MoMo, ZaloPay, VNPay</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RELATED PRODUCTS -->
+  <section class="related-section">
+    <div class="container">
+      <div class="section-title text-center reveal">
+        <h2>Sản phẩm liên quan</h2>
+        <span class="line"></span>
+      </div>
+      <div class="row g-4" id="related-grid"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer text-white pt-5 pb-3">
+    <div class="container">
+
+      <div class="row">
+
+        <!-- CỘT 1 -->
+        <div class="col-md-3">
+          <h5>Fashion Shop</h5>
+          <p>Chuyên cung cấp quần áo<br> thời trang chất lượng cao.</p>
+
+          <!-- SOCIAL -->
+          <div class="social-icons mt-3">
+            <a href="https://www.facebook.com/tuan.khanh.618179" target="_blank">
+              <img src="anh/logo/facebook.png" alt="Facebook">
+            </a>
+
+            <a href="https://www.instagram.com/durikan_01/" target="_blank">
+              <img src="anh/logo/instagram.png" alt="Instagram">
+            </a>
+
+            <a href="https://www.tiktok.com/@jun_qing01" target="_blank">
+              <img src="anh/logo/tiktok.png" alt="TikTok">
+            </a>
+          </div>
+        </div>
+
+        <!-- CỘT 2 -->
+        <div class="col-md-3">
+          <h5>Liên kết</h5>
+          <ul class="footer-link">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="category.html">Danh mục</a></li>
+            <li><a href="cart.html">Giỏ hàng</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <!-- CỘT 3 -->
+        <div class="col-md-3">
+          <h5>Liên hệ</h5>
+          <p>Email: tkw@gmail.com</p>
+          <p>Phone: 0949 805 562</p>
+          <p>Địa chỉ: Đồng Nai</p>
+
+          <!-- NEWSLETTER -->
+          <div class="newsletter mt-3">
+            <input type="email" placeholder="Nhập email...">
+            <button onclick="subscribe()">Đăng ký</button>
+          </div>
+        </div>
+
+        <!-- CỘT 4 (MAP) -->
+        <div class="col-md-3">
+          <h5>Vị trí cửa hàng</h5>
+
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps?q=Đồng%20Nai&output=embed" width="100%" height="150"
+              style="border:0;" loading="lazy">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="bg-light">
+
+      <p class="text-center mb-0">
+        © 2026 Fashion Shop | All rights reserved <br>Designed by <a href="https://www.facebook.com/tuan.khanh.618179"
+          target="_blank">Tuan Khanh</a> | 23-0-20076
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- CHAT -->
+  <div id="chat-icon" onclick="toggleChat()">💬</div>
+  <div id="chat-box">
+    <div class="chat-header">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="chat-avatar"
+          style="width:28px;height:28px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.9rem;">
+          👗</div>
+        <div>
+          <div style="font-weight:700;font-size:.88rem;">Fashion Shop</div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:.7rem;opacity:.75;"><span
+              class="chat-status-dot"></span> Đang hoạt động</div>
+        </div>
+      </div>
+      <span class="chat-close" onclick="toggleChat()">✕</span>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="chat-msg shop">Xin chào! 👋 Bạn cần hỗ trợ gì không?</div>
+    </div>
+    <div class="chat-suggestions">
+      <button class="chat-suggest-btn" onclick="quickReply('Tôi muốn hỏi về size')">📏 Size</button>
+      <button class="chat-suggest-btn" onclick="quickReply('Chính sách đổi trả?')">🔄 Đổi trả</button>
+      <button class="chat-suggest-btn" onclick="quickReply('Giao hàng mất bao lâu?')">🚚 Giao hàng</button>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chat-input" placeholder="Nhập tin nhắn..."
+        onkeydown="if(event.key==='Enter')sendMessage()">
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <!-- STICKY BAR -->
+  <div id="sticky-bar">
+    <div class="sticky-product-info">
+      <img class="sticky-thumb" id="sticky-thumb" src="" alt="">
+      <div>
+        <div class="sticky-name" id="sticky-name">—</div>
+        <div class="sticky-price" id="sticky-price">—</div>
+      </div>
+    </div>
+    <button class="sticky-btn" onclick="addToCartMain()">🛒 Thêm vào giỏ</button>
+  </div>
+
+  <!-- SIZE GUIDE MODAL -->
+  <div id="sizeguide-modal">
+    <div class="sg-backdrop" onclick="closeSizeGuide()"></div>
+    <div class="sg-box">
+      <button class="sg-close" onclick="closeSizeGuide()">✕</button>
+      <h4>📏 Hướng dẫn chọn size</h4>
+      <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:16px;">Đo vòng ngực và chiều cao để chọn size
+        chính xác nhất.</p>
+      <table class="sg-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Chiều cao (cm)</th>
+            <th>Cân nặng (kg)</th>
+            <th>Vòng ngực (cm)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>S</strong></td>
+            <td>158 – 163</td>
+            <td>45 – 55</td>
+            <td>82 – 86</td>
+          </tr>
+          <tr>
+            <td><strong>M</strong></td>
+            <td>163 – 168</td>
+            <td>55 – 65</td>
+            <td>87 – 91</td>
+          </tr>
+          <tr>
+            <td><strong>L</strong></td>
+            <td>168 – 173</td>
+            <td>65 – 75</td>
+            <td>92 – 96</td>
+          </tr>
+          <tr>
+            <td><strong>XL</strong></td>
+            <td>173 – 178</td>
+            <td>75 – 85</td>
+            <td>97 – 102</td>
+          </tr>
+          <tr>
+            <td><strong>XXL</strong></td>
+            <td>178 – 183</td>
+            <td>85 – 95</td>
+            <td>103 – 108</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast-noti"></div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* ─────────────────────────────────────
+       PRODUCT DATABASE – extend as needed
+    ───────────────────────────────────── */
+    const ALL_PRODUCTS = [
+      {
+        id: 1,
+        name: 'Áo thun nam basic',
+        category: 'Áo Nam',
+        price: 199000, old: 249000,
+        images: ['anh/Quanao/aoDen.png', 'anh/Quanao/aoDenNguoimac.png', 'anh/Quanao/aoDenNguoimacGOCXEO.png'],
+        rating: 4.7, reviewCount: 48, sold: 312,
+        stock: 'in-stock',
+        description: `
+      <h5>Giới thiệu sản phẩm</h5>
+      <p>Áo thun nam basic – thiết kế tối giản, phù hợp mọi phong cách. Chất liệu cotton 100% co giãn nhẹ, thoáng mát, thấm hút mồ hôi tốt. Phù hợp mặc đi học, đi làm, đi chơi.</p>
+      <h5>Đặc điểm nổi bật</h5>
+      <ul>
+        <li>Chất liệu: Cotton 100%, trọng lượng 200gsm</li>
+        <li>Form áo: Regular Fit – không quá rộng, không quá bó</li>
+        <li>Cổ áo: Cổ tròn dệt bo chắc chắn, giữ form lâu dài</li>
+        <li>Màu sắc đa dạng: Đen, Trắng, Xám, Navy, Nâu</li>
+        <li>Wash care: Giặt máy ở 30°C, không tẩy, phơi trong bóng mát</li>
+      </ul>`,
+        specs: [
+          ['Chất liệu', 'Cotton 100% – 200gsm'],
+          ['Xuất xứ', 'Việt Nam'],
+          ['Kiểu dáng', 'Regular Fit'],
+          ['Cổ áo', 'Cổ tròn bo dệt'],
+          ['Size', 'S / M / L / XL (XXL hết hàng)'],
+          ['Màu', 'Đen, Trắng, Xám, Navy, Nâu'],
+          ['Bảo quản', 'Giặt máy 30°C, không tẩy'],
+        ],
+        reviews: [
+          { name: 'Minh Tuấn', stars: 5, text: 'Áo mặc rất thoải mái, chất cotton mềm mịn. Màu đen chuẩn, không bị bạc sau khi giặt nhiều lần. Rất ưng ý!', date: '18/04/2026', verified: true },
+          { name: 'Hoàng Linh', stars: 5, text: 'Form áo đẹp, mặc vừa size L dù cân 70kg. Giao hàng nhanh, đóng gói kỹ. Sẽ mua thêm màu trắng!', date: '12/04/2026', verified: true },
+          { name: 'Thành Nam', stars: 4, text: 'Chất vải ổn, giá hợp lý. Màu sắc đúng như hình. Chỉ tiếc size XXL hết hàng, phải chờ.', date: '05/04/2026', verified: false },
+        ]
+      },
+      {
+        id: 2,
+        name: 'Quần jean nam',
+        category: 'Quần Nam',
+        price: 299000, old: 349000,
+        images: ['anh/Quanao/Quanden.png', 'anh/Quanao/QuandenNguoimac.png', 'anh/Quanao/QuandenNguoimacGOCXEO.png'],
+        rating: 4.9, reviewCount: 73, sold: 521,
+        stock: 'in-stock',
+        description: `
+      <h5>Giới thiệu sản phẩm</h5>
+      <p>Quần jean nam Slim Fit – kiểu dáng trẻ trung, năng động. Chất liệu denim co giãn nhẹ 4 chiều, mặc thoải mái cả ngày dài. Phù hợp đi làm, đi chơi và dạo phố.</p>
+      <h5>Đặc điểm nổi bật</h5>
+      <ul>
+        <li>Chất liệu: Denim cotton pha spandex (98% cotton + 2% spandex)</li>
+        <li>Form quần: Slim Fit – ôm vừa phải, tôn dáng</li>
+        <li>Màu sắc: Đen, Xanh đậm, Xanh nhạt</li>
+        <li>Chi tiết: Túi trước sau, belt loop, zip fly</li>
+        <li>Wash care: Giặt tay hoặc máy ở 30°C, phơi thẳng</li>
+      </ul>`,
+        specs: [
+          ['Chất liệu', '98% Cotton + 2% Spandex'],
+          ['Xuất xứ', 'Việt Nam'],
+          ['Kiểu dáng', 'Slim Fit'],
+          ['Khóa', 'Zip fly'],
+          ['Size', '28 / 29 / 30 / 31 / 32 / 33 / 34'],
+          ['Màu', 'Đen, Xanh đậm, Xanh nhạt'],
+          ['Bảo quản', 'Giặt 30°C, phơi thẳng'],
+        ],
+        reviews: [
+          { name: 'Quốc Bảo', stars: 5, text: 'Quần đẹp lắm! Form slim vừa vặn, không bị bó khó chịu. Chất denim dày dặn, mặc bền. Đã mua 2 màu rồi!', date: '20/04/2026', verified: true },
+          { name: 'Ngọc Huy', stars: 5, text: 'Giao hàng siêu tốc, chỉ 1 ngày. Quần form chuẩn, mặc kết hợp áo thun trông rất trendy.', date: '15/04/2026', verified: true },
+          { name: 'Văn Đức', stars: 4, text: 'Chất lượng tốt so với giá tiền. Màu đen bền sau nhiều lần giặt. Sẽ quay lại ủng hộ shop!', date: '08/04/2026', verified: true },
+        ]
+      },
+      {
+        id: 3,
+        name: 'Áo hoodie',
+        category: 'Áo Khoác',
+        price: 399000, old: 449000,
+        images: ['anh/Quanao/Aohoodie.png', 'anh/Quanao/AohoodieNguoimac.png', 'anh/Quanao/AohoodieNguoimacGOCXEO.png'],
+        rating: 4.6, reviewCount: 31, sold: 187,
+        stock: 'low-stock',
+        description: `
+      <h5>Giới thiệu sản phẩm</h5>
+      <p>Áo hoodie unisex – thiết kế đơn giản, mặc được 4 mùa. Chất liệu nỉ bông dày mịn, giữ ấm tốt. Có dây rút mũ tiện lợi, túi kangaroo phía trước.</p>
+      <h5>Đặc điểm nổi bật</h5>
+      <ul>
+        <li>Chất liệu: Cotton fleece – 320gsm siêu dày</li>
+        <li>Form: Oversize nhẹ, phù hợp cả nam và nữ</li>
+        <li>Đặc điểm: Mũ 2 lớp, túi kangaroo, dây rút điều chỉnh</li>
+        <li>Màu: Đen, Xám nhạt, Trắng kem, Navy, Nâu lạc đà</li>
+      </ul>`,
+        specs: [
+          ['Chất liệu', 'Cotton Fleece 100% – 320gsm'],
+          ['Xuất xứ', 'Việt Nam'],
+          ['Kiểu dáng', 'Oversize Fit'],
+          ['Đặc điểm', 'Mũ 2 lớp, túi kangaroo'],
+          ['Size', 'S / M / L / XL / XXL'],
+          ['Màu', 'Đen, Xám, Trắng kem, Navy, Nâu'],
+          ['Bảo quản', 'Giặt máy 30°C, không vắt mạnh'],
+        ],
+        reviews: [
+          { name: 'Thu Hằng', stars: 5, text: 'Áo hoodie chất siêu ngon! Nỉ dày, mềm mịn. Mặc vào ấm mà vẫn thoải mái, không bí. Mua cho người yêu mà cô ấy thích lắm 😍', date: '17/04/2026', verified: true },
+          { name: 'Trí Dũng', stars: 4, text: 'Chất vải tốt, màu đẹp. Form hơi rộng so với mô tả nhưng mặc vẫn đẹp. Giao hàng nhanh.', date: '10/04/2026', verified: true },
+        ]
+      },
+      {
+        id: 4,
+        name: 'Giày sneaker',
+        category: 'Giày Dép',
+        price: 499000, old: 599000,
+        images: ['anh/Quanao/Giay.png', 'anh/Quanao/GiayGocxeo.png', 'anh/Quanao/GiayNguoimang.png'],
+        rating: 4.8, reviewCount: 92, sold: 734,
+        stock: 'in-stock',
+        description: `
+      <h5>Giới thiệu sản phẩm</h5>
+      <p>Giày sneaker unisex – thiết kế low-top trẻ trung, phù hợp nhiều phong cách. Đế cao su chống trượt, lót giày êm ái giảm chấn. Thích hợp đi học, đi chơi và đi làm casual.</p>
+      <h5>Đặc điểm nổi bật</h5>
+      <ul>
+        <li>Chất liệu mũi giày: Canvas dày, chống bẩn nhẹ</li>
+        <li>Đế: Cao su EVA siêu nhẹ, chống trượt</li>
+        <li>Lót: Đệm Memory Foam thoáng khí</li>
+        <li>Kiểu dáng: Low-top, dây giày phẳng</li>
+        <li>Màu: Trắng, Đen, Navy, Xám</li>
+      </ul>`,
+        specs: [
+          ['Chất liệu mũi', 'Canvas chống bẩn'],
+          ['Đế giày', 'Cao su EVA siêu nhẹ'],
+          ['Lót giày', 'Memory Foam thoáng khí'],
+          ['Kiểu dáng', 'Low-top Sneaker'],
+          ['Size', '38 / 39 / 40 / 41 / 42 / 43 / 44'],
+          ['Màu', 'Trắng, Đen, Navy, Xám'],
+          ['Xuất xứ', 'Việt Nam'],
+        ],
+        reviews: [
+          { name: 'Bảo Khang', stars: 5, text: 'Giày đẹp lắm, mang đúng size, không bị chật. Đế êm, đi cả ngày không mỏi chân. Giá rẻ mà chất lượng ok!', date: '21/04/2026', verified: true },
+          { name: 'Mai Anh', stars: 5, text: 'Mua tặng bạn trai, bạn ấy rất thích! Màu trắng sạch sẽ, da bò mềm. Giao hàng đúng hẹn.', date: '19/04/2026', verified: true },
+          { name: 'Trọng Nghĩa', stars: 4, text: 'Giày đẹp, nhẹ, mang thoải mái. Chỉ cần lưu ý vệ sinh thường xuyên vì màu trắng dễ bẩn.', date: '14/04/2026', verified: false },
+        ]
+      },
+    ];
+
+    /* ─────────────────────────────────────
+       INIT
+    ───────────────────────────────────── */
+    let currentProduct = null;
+    let selectedStar = 0;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('page-loader').classList.add('hidden'), 600);
+      initProduct();
+      updateCartCount();
+      initReveal();
+      initCursor();
+      initScroll();
+    });
+
+    function initProduct() {
+      // Read from localStorage (set by goToProduct() in index/category page)
+      let saved = null;
+      try { saved = JSON.parse(localStorage.getItem('currentProduct')); } catch (e) { }
+
+      // Fallback: match by name from URL hash
+      if (!saved) {
+        const hash = decodeURIComponent(location.hash.replace('#', ''));
+        if (hash) saved = ALL_PRODUCTS.find(p => p.name === hash) || null;
+      }
+
+      // Default to first product
+      currentProduct = ALL_PRODUCTS.find(p => saved && p.name === saved.name) || ALL_PRODUCTS[0];
+
+      renderProduct(currentProduct);
+      renderRelated(currentProduct);
+    }
+
+    function renderProduct(p) {
+      document.title = p.name + ' – Fashion Shop';
+      document.getElementById('page-title').textContent = p.name + ' – Fashion Shop';
+      document.getElementById('bc-name').textContent = p.name;
+
+      // Gallery
+      const mainImg = document.getElementById('main-img');
+      mainImg.src = p.images[0];
+      mainImg.alt = p.name;
+
+      const thumbsEl = document.getElementById('gallery-thumbs');
+      thumbsEl.innerHTML = p.images.map((img, i) =>
+        `<div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="switchImage(this,'${img}')">
+       <img src="${img}" alt="${p.name} ${i + 1}" loading="lazy">
+     </div>`
+      ).join('');
+
+      // Badge
+      const disc = Math.round((1 - p.price / p.old) * 100);
+      document.getElementById('gallery-badge').textContent = '-' + disc + '%';
+
+      // Info
+      document.getElementById('prod-category').textContent = p.category;
+      document.getElementById('prod-title').textContent = p.name;
+
+      // Stars
+      const starsEl = document.getElementById('stars-display');
+      starsEl.innerHTML = [1, 2, 3, 4, 5].map(i =>
+        `<span class="s ${i <= Math.round(p.rating) ? 'on' : ''}">★</span>`
+      ).join('');
+      document.getElementById('rating-score').textContent = p.rating.toFixed(1);
+      document.getElementById('rating-count').textContent = p.reviewCount + ' đánh giá';
+      document.getElementById('sold-count').textContent = 'Đã bán ' + p.sold.toLocaleString('vi');
+      document.getElementById('review-tab-count').textContent = '(' + p.reviewCount + ')';
+      document.getElementById('rs-score').innerHTML = p.rating.toFixed(1) + '<span>/5</span>';
+      document.getElementById('rs-total').textContent = p.reviewCount + ' đánh giá';
+
+      // Price
+      document.getElementById('prod-price').textContent = p.price.toLocaleString('vi') + 'đ';
+      document.getElementById('prod-old').textContent = p.old.toLocaleString('vi') + 'đ';
+      const saved_amt = (p.old - p.price).toLocaleString('vi');
+      document.getElementById('prod-saving').textContent = `Tiết kiệm ${saved_amt}đ`;
+
+      // Stock badge
+      const sb = document.getElementById('stock-badge');
+      if (p.stock === 'low-stock') {
+        sb.className = 'stock-badge low-stock'; sb.textContent = '⚠ Sắp hết hàng';
+      } else {
+        sb.className = 'stock-badge in-stock'; sb.textContent = '✓ Còn hàng';
+      }
+
+      // Description
+      document.getElementById('prod-desc').innerHTML = p.description;
+
+      // Specs
+      const specsEl = document.getElementById('specs-table');
+      specsEl.innerHTML = p.specs.map(([k, v]) =>
+        `<tr><td>${k}</td><td>${v}</td></tr>`
+      ).join('');
+
+      // Reviews
+      renderReviews(p.reviews, p.reviewCount);
+
+      // Sticky bar
+      document.getElementById('sticky-name').textContent = p.name;
+      document.getElementById('sticky-price').textContent = p.price.toLocaleString('vi') + 'đ';
+      document.getElementById('sticky-thumb').src = p.images[0];
+
+      // Wishlist state
+      const wl = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      const wBtn = document.getElementById('gallery-wishlist');
+      if (wl.includes(p.name)) { wBtn.textContent = '❤️'; wBtn.classList.add('active'); }
+    }
+
+    function renderReviews(reviews, total) {
+      // Rating bars
+      const counts = [0, 0, 0, 0, 0];
+      reviews.forEach(r => counts[r.stars - 1]++);
+      const barsEl = document.getElementById('rating-bars');
+      barsEl.innerHTML = [5, 4, 3, 2, 1].map(n => {
+        const pct = total > 0 ? Math.round((counts[n - 1] / total) * 100) : 0;
+        return `<div class="rating-bar-row">
+      <span class="label">${n}★</span>
+      <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0" data-w="${pct}%"></div></div>
+      <span class="pct">${pct}%</span>
+    </div>`;
+      }).join('');
+      setTimeout(() => {
+        document.querySelectorAll('.rating-bar-fill').forEach(el => el.style.width = el.dataset.w);
+      }, 200);
+
+      // Review list
+      const listEl = document.getElementById('reviews-list');
+      listEl.innerHTML = reviews.map(r => `
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">${r.name.split(' ').pop().charAt(0)}</div>
+          <div>
+            <div class="reviewer-name">${r.name} ${r.verified ? '<span class="review-verified">✓ Đã mua</span>' : ''}</div>
+            <div class="review-stars">${'<span>★</span>'.repeat(r.stars) + '<span style="color:#ddd">★</span>'.repeat(5 - r.stars)}</div>
+          </div>
+        </div>
+        <div class="review-date">${r.date}</div>
+      </div>
+      <div class="review-text">${r.text}</div>
+    </div>
+  `).join('');
+    }
+
+    function renderRelated(current) {
+      const related = ALL_PRODUCTS.filter(p => p.id !== current.id);
+      const grid = document.getElementById('related-grid');
+      grid.innerHTML = related.map(p => {
+        const disc = Math.round((1 - p.price / p.old) * 100);
+        return `
+    <div class="col-lg-4 col-md-4 col-sm-6 reveal">
+      <div class="card product-card">
+        <div class="product-img-wrapper">
+          <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
+          <span class="badge-sale">-${disc}%</span>
+          <span class="wishlist" onclick="toggleWishlist(this,'${p.name}')">🤍</span>
+          <button class="btn-add-cart" onclick="addToCartFromCard('${p.name}',${p.price},this)">Thêm vào giỏ</button>
+          <button class="btn-quick-view" onclick="goToProductPage('${p.name}')">👁 Xem chi tiết</button>
+        </div>
+        <div class="card-body text-center">
+          <div class="star-rating">
+            ${'<span class="star filled">★</span>'.repeat(Math.round(p.rating))}${'<span class="star">★</span>'.repeat(5 - Math.round(p.rating))}
+            <span class="count">(${p.reviewCount})</span>
+          </div>
+          <h6 class="product-name">${p.name}</h6>
+          <div class="price-box">
+            <span class="old-price">${p.old.toLocaleString('vi')}đ</span>
+            <span class="price">${p.price.toLocaleString('vi')}đ</span>
+          </div>
+          <button class="btn btn-warning btn-sm mt-1" onclick="goToProductPage('${p.name}')">Xem chi tiết</button>
+        </div>
+      </div>
+    </div>`;
+      }).join('');
+    }
+
+    /* ─────────────────────────────────────
+       NAVIGATE TO PRODUCT (called from index/category)
+    ───────────────────────────────────── */
+    function goToProductPage(name) {
+      const p = ALL_PRODUCTS.find(x => x.name === name);
+      if (p) { localStorage.setItem('currentProduct', JSON.stringify(p)); }
+      location.href = 'product.html#' + encodeURIComponent(name);
+    }
+    // Make accessible globally for index.html's goToProduct()
+    window.goToProduct = function (data) {
+      const p = ALL_PRODUCTS.find(x => x.name === data.name);
+      if (p) localStorage.setItem('currentProduct', JSON.stringify(p));
+      location.href = 'product.html#' + encodeURIComponent(data.name);
+    };
+
+    /* ─────────────────────────────────────
+       GALLERY
+    ───────────────────────────────────── */
+    function switchImage(thumb, src) {
+      document.getElementById('main-img').src = src;
+      document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+      // Reset zoom
+      document.getElementById('gallery-main').classList.remove('zoomed');
+    }
+
+    function toggleZoom(el) {
+      el.classList.toggle('zoomed');
+    }
+
+    /* ─────────────────────────────────────
+       OPTIONS
+    ───────────────────────────────────── */
+    function selectColor(el) {
+      document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('selected-color').textContent = el.dataset.color;
+    }
+
+    function selectSize(el) {
+      if (el.classList.contains('out-of-stock')) return;
+      document.querySelectorAll('.size-opt').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('selected-size').textContent = el.textContent;
+    }
+
+    function changeQty(delta) {
+      const input = document.getElementById('qty-input');
+      input.value = Math.max(1, Math.min(99, parseInt(input.value || 1) + delta));
+    }
+
+    /* ─────────────────────────────────────
+       CART
+    ───────────────────────────────────── */
+    function getCart() { try { return JSON.parse(localStorage.getItem('cart') || '[]'); } catch (e) { return []; } }
+    function saveCart(c) { localStorage.setItem('cart', JSON.stringify(c)); }
+    function updateCartCount() {
+      const c = document.getElementById('cart-count');
+      if (c) c.textContent = getCart().length;
+    }
+
+    function addToCartMain() {
+      if (!currentProduct) return;
+      const qty = parseInt(document.getElementById('qty-input').value) || 1;
+      const size = document.getElementById('selected-size').textContent;
+      const color = document.getElementById('selected-color').textContent;
+      const cart = getCart();
+      for (let i = 0; i < qty; i++) {
+        cart.push({ name: currentProduct.name, price: currentProduct.price, size, color, qty: 1 });
+      }
+      saveCart(cart);
+      updateCartCount();
+      showToast(`✅ Đã thêm ${qty}x "${currentProduct.name}" (${size}, ${color}) vào giỏ!`);
+      const btn = document.querySelector('.btn-add-cart-main');
+      if (btn) { addRipple(btn); }
+      const cc = document.getElementById('cart-count');
+      cc.classList.remove('cart-count-bump'); void cc.offsetWidth; cc.classList.add('cart-count-bump');
+    }
+
+    function buyNow() {
+      addToCartMain();
+      setTimeout(() => location.href = 'cart.html', 800);
+    }
+
+    function addToCartFromCard(name, price, btn) {
+      const cart = getCart();
+      cart.push({ name, price, qty: 1 });
+      saveCart(cart);
+      updateCartCount();
+      showToast(`✅ Đã thêm "${name}" vào giỏ!`);
+      if (btn) addRipple(btn);
+    }
+
+    function addRipple(el) {
+      const r = document.createElement('span');
+      r.className = 'ripple';
+      const rect = el.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      r.style.cssText = `width:${size}px;height:${size}px;left:0;top:0;`;
+      el.style.position = 'relative'; el.appendChild(r);
+      setTimeout(() => r.remove(), 700);
+    }
+
+    /* ─────────────────────────────────────
+       WISHLIST
+    ───────────────────────────────────── */
+    function toggleWishlistPage(e) {
+      e.stopPropagation();
+      const btn = document.getElementById('gallery-wishlist');
+      const wl = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      const name = currentProduct?.name || '';
+      if (btn.classList.contains('active')) {
+        btn.classList.remove('active'); btn.textContent = '🤍';
+        const i = wl.indexOf(name); if (i > -1) wl.splice(i, 1);
+        showToast('💔 Đã xoá khỏi yêu thích');
+      } else {
+        btn.classList.add('active'); btn.textContent = '❤️';
+        if (!wl.includes(name)) wl.push(name);
+        showToast('❤️ Đã lưu vào yêu thích!');
+      }
+      localStorage.setItem('wishlist', JSON.stringify(wl));
+    }
+
+    function toggleWishlist(el, name) {
+      el.classList.toggle('active');
+      const wl = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      if (el.classList.contains('active')) { el.textContent = '❤️'; if (!wl.includes(name)) wl.push(name); showToast(`❤️ Đã lưu yêu thích`); }
+      else { el.textContent = '🤍'; const i = wl.indexOf(name); if (i > -1) wl.splice(i, 1); showToast('💔 Đã xoá yêu thích'); }
+      localStorage.setItem('wishlist', JSON.stringify(wl));
+    }
+
+    /* ─────────────────────────────────────
+       SHARE
+    ───────────────────────────────────── */
+    function toggleShare() {
+      document.getElementById('share-panel').classList.toggle('open');
+    }
+    function shareTo(platform) { showToast(`📤 Đang mở ${platform}...`); }
+    function copyLink() {
+      navigator.clipboard?.writeText(location.href).then(() => showToast('🔗 Đã copy link!')).catch(() => showToast('🔗 Copy: ' + location.href));
+    }
+
+    /* ─────────────────────────────────────
+       TABS
+    ───────────────────────────────────── */
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + id).classList.add('active');
+    }
+
+    /* ─────────────────────────────────────
+       SIZE GUIDE
+    ───────────────────────────────────── */
+    function openSizeGuide(e) { e.preventDefault(); document.getElementById('sizeguide-modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeSizeGuide() { document.getElementById('sizeguide-modal').classList.remove('open'); document.body.style.overflow = ''; }
+
+    /* ─────────────────────────────────────
+       REVIEW FORM
+    ───────────────────────────────────── */
+    function showReviewForm() {
+      const wrap = document.getElementById('review-form-wrap');
+      wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+      if (wrap.style.display === 'block') wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function setReviewStar(n) {
+      selectedStar = n;
+      updateStarPicker(n);
+    }
+    function hoverStar(n) { updateStarPicker(n); }
+    function unhoverStar() { updateStarPicker(selectedStar); }
+    function updateStarPicker(n) {
+      document.querySelectorAll('#star-picker span').forEach((s, i) => s.textContent = i < n ? '★' : '☆');
+    }
+
+    function submitReview() {
+      const name = document.getElementById('rv-name').value.trim();
+      const text = document.getElementById('rv-text').value.trim();
+      if (!selectedStar) { showToast('⚠️ Vui lòng chọn số sao!'); return; }
+      if (!name) { showToast('⚠️ Vui lòng nhập tên!'); return; }
+      if (!text) { showToast('⚠️ Vui lòng nhập nội dung!'); return; }
+
+      const today = new Date();
+      const dateStr = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
+      const newReview = { name, stars: selectedStar, text, date: dateStr, verified: false };
+      currentProduct.reviews.unshift(newReview);
+      currentProduct.reviewCount++;
+      renderReviews(currentProduct.reviews, currentProduct.reviewCount);
+      document.getElementById('rv-name').value = '';
+      document.getElementById('rv-text').value = '';
+      selectedStar = 0; updateStarPicker(0);
+      document.getElementById('review-form-wrap').style.display = 'none';
+      switchTab('reviews', document.querySelectorAll('.tab-btn')[2]);
+      showToast('🎉 Đánh giá của bạn đã được gửi!');
+    }
+
+    /* ─────────────────────────────────────
+       TOAST
+    ───────────────────────────────────── */
+    function showToast(msg, dur = 2800) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), dur);
+    }
+
+    /* ─────────────────────────────────────
+       CURSOR
+    ───────────────────────────────────── */
+    function initCursor() {
+      const c = document.getElementById('cursor');
+      const f = document.getElementById('cursor-follower');
+      if (!c || !f) return;
+      document.addEventListener('mousemove', e => {
+        c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
+        f.style.left = e.clientX + 'px'; f.style.top = e.clientY + 'px';
+      });
+      document.querySelectorAll('a,button,.gallery-thumb,.color-swatch,.size-opt,.wishlist').forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-grow'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-grow'));
+      });
+    }
+
+    /* ─────────────────────────────────────
+       SCROLL REVEAL + STICKY BAR
+    ───────────────────────────────────── */
+    function initReveal() {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            e.target.querySelectorAll('.line').forEach(l => l.classList.add('animated'));
+            e.target.querySelectorAll('.footer h5').forEach(h => h.classList.add('animated'));
+          }
+        });
+      }, { threshold: .1 });
+      document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+    }
+
+    function initScroll() {
+      const cta = document.querySelector('.product-cta');
+      window.addEventListener('scroll', () => {
+        document.querySelector('.header')?.classList.toggle('scrolled', window.scrollY > 40);
+        document.getElementById('back-to-top')?.classList.toggle('visible', window.scrollY > 300);
+        // Sticky bar appears after CTA scrolls out of view
+        if (cta) {
+          const rect = cta.getBoundingClientRect();
+          document.getElementById('sticky-bar')?.classList.toggle('visible', rect.bottom < 0);
         }
-        function goToProductByIndex(index) {
-            let list = JSON.parse(localStorage.getItem("allProducts")) || [];
+        // Animate lines
+        document.querySelectorAll('.line').forEach(l => {
+          if (l.getBoundingClientRect().top < window.innerHeight * .9) l.classList.add('animated');
+        });
+        document.querySelectorAll('.footer h5').forEach(h => {
+          if (h.getBoundingClientRect().top < window.innerHeight * .9) h.classList.add('animated');
+        });
+        // Rating bars animate when visible
+        document.querySelectorAll('.rating-bar-fill').forEach(el => {
+          if (el.getBoundingClientRect().top < window.innerHeight * .9 && !el.style.width.includes('%')) {
+            el.style.width = el.dataset.w;
+          }
+        });
+      });
+      document.getElementById('back-to-top')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
 
-            let selected = list[index];
+    /* ─────────────────────────────────────
+       HEADER SCROLL CLASS
+    ───────────────────────────────────── */
+    window.addEventListener('scroll', () => {
+      document.querySelector('.header')?.classList.toggle('scrolled', window.scrollY > 40);
+    });
 
-            if (!selected) {
-                alert("Lỗi sản phẩm!");
-                return;
-            }
+    /* ─────────────────────────────────────
+       NEWSLETTER & CHAT
+    ───────────────────────────────────── */
+    function subscribe() {
+      const el = document.getElementById('nl-email');
+      if (!el || !el.value || !el.value.includes('@')) { showToast('⚠️ Nhập email hợp lệ!'); return; }
+      showToast('🎉 Đăng ký thành công!'); el.value = '';
+    }
 
-            // lưu sản phẩm mới
-            localStorage.setItem("currentProduct", JSON.stringify(selected));
+    function toggleChat() {
+      const box = document.getElementById('chat-box');
+      const icon = document.getElementById('chat-icon');
+      box.classList.toggle('open'); icon.classList.toggle('active');
+      icon.textContent = box.classList.contains('open') ? '✕' : '💬';
+    }
+    const chatDb = { size: ['S(≤55kg), M(55-65kg), L(65-75kg), XL(75-85kg) 📏'], đổi: ['Đổi trả miễn phí 7 ngày, còn nguyên tem ✅'], giao: ['Giao toàn quốc 2-5 ngày 🚚 Miễn phí đơn 500K+!'], default: ['Cảm ơn bạn! Shop phản hồi sớm nhất 😊', 'Bạn cần hỗ trợ thêm gì không?'] };
+    function getReply(m) { const l = m.toLowerCase(); if (l.includes('size')) return chatDb.size[0]; if (l.includes('đổi') || l.includes('trả')) return chatDb['đổi'][0]; if (l.includes('giao') || l.includes('ship')) return chatDb.giao[0]; return chatDb.default[Math.floor(Math.random() * chatDb.default.length)]; }
+    function sendMessage() { const inp = document.getElementById('chat-input'); const msg = inp.value.trim(); if (!msg) return; addMsg(msg, 'user'); inp.value = ''; addTyping(); setTimeout(() => { removeTyping(); addMsg(getReply(msg), 'shop'); }, 900 + Math.random() * 500); }
+    function quickReply(m) { document.getElementById('chat-input').value = m; sendMessage(); }
+    function addMsg(text, from) { const body = document.getElementById('chat-body'); const d = document.createElement('div'); d.className = `chat-msg ${from}`; d.textContent = text; body.appendChild(d); body.scrollTop = body.scrollHeight; }
+    function addTyping() { const body = document.getElementById('chat-body'); const d = document.createElement('div'); d.className = 'chat-typing'; d.id = 'typing-ind'; d.innerHTML = '<span></span><span></span><span></span>'; body.appendChild(d); body.scrollTop = body.scrollHeight; }
+    function removeTyping() { document.getElementById('typing-ind')?.remove(); }
 
-            // reload lại trang để load sản phẩm mới
-            location.reload();
-        }
-    </script>
-
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeSizeGuide();
+    });
+  </script>
 </body>
 
 </html>

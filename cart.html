@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
+    <title>Giỏ hàng - Fashion Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/cart.css">
@@ -12,28 +12,307 @@
 
 <body>
 
-    <header class="p-3 text-white">
-        <div class="container d-flex justify-content-between">
-            <h3>Fashion Shop</h3>
-            <nav>
+    <!-- HEADER -->
+    <header class="header p-3 text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3 class="logo">Fashion Shop</h3>
+            <div class="search-box">
+                <input type="text" placeholder="Tìm sản phẩm...">
+                <button>🔍</button>
+            </div>
+            <nav class="nav-menu">
                 <a href="index.html">Trang chủ</a>
                 <a href="category.html">Danh mục</a>
-                <a href="cart.html">Giỏ hàng</a>
+                <a href="cart.html" class="cart-icon">
+                    🛒 <span id="cart-count">0</span>
+                </a>
                 <a href="contact.html">Liên hệ</a>
             </nav>
         </div>
     </header>
 
-    <section class="container mt-4">
-        <h2>Giỏ hàng của bạn</h2>
-        <ul id="cart" class="list-group"></ul>
+    <!-- NỘI DUNG GIỎ HÀNG -->
+    <section class="container mt-5 mb-5">
+
+        <h2 class="cart-title">🛒 Giỏ hàng của bạn</h2>
+        <hr>
+
+        <!-- GIỎ TRỐNG -->
+        <div id="empty-cart" class="empty-cart" style="display:none;">
+            <div class="empty-icon">🛍️</div>
+            <p>Giỏ hàng của bạn đang trống!</p>
+            <a href="index.html" class="btn btn-warning mt-2">Tiếp tục mua sắm</a>
+        </div>
+
+        <!-- DANH SÁCH SẢN PHẨM -->
+        <div id="cart-container" style="display:none;">
+            <div class="row">
+
+                <!-- CỘT TRÁI: danh sách -->
+                <div class="col-lg-8">
+                    <ul id="cart-list" class="list-unstyled"></ul>
+                </div>
+
+                <!-- CỘT PHẢI: tổng tiền -->
+                <div class="col-lg-4">
+                    <div class="cart-summary">
+                        <h5>📋 Tóm tắt đơn hàng</h5>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Số sản phẩm:</span>
+                            <span id="total-items">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tạm tính:</span>
+                            <span id="subtotal">0đ</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Phí ship:</span>
+                            <span class="text-success fw-bold">Miễn phí</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between total-row">
+                            <span>Tổng cộng:</span>
+                            <span id="grand-total" class="total-price">0đ</span>
+                        </div>
+                        <button class="btn btn-warning w-100 mt-3 btn-checkout" onclick="checkout()">
+                            Thanh toán ngay →
+                        </button>
+                        <a href="index.html" class="btn btn-outline-secondary w-100 mt-2">
+                            ← Tiếp tục mua sắm
+                        </a>
+                        <button class="btn btn-outline-danger w-100 mt-2" onclick="clearCart()">
+                            🗑️ Xóa toàn bộ giỏ hàng
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </section>
 
-    <footer class="text-white text-center p-3 mt-4">
-        <p>© 2026 Fashion Shop</p>
+    <!-- FOOTER -->
+    <footer class="footer text-white pt-5 pb-3">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- CỘT 1 -->
+                <div class="col-md-3">
+                    <h5>Fashion Shop</h5>
+                    <p>Chuyên cung cấp quần áo<br> thời trang chất lượng cao.</p>
+
+                    <!-- SOCIAL -->
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/tuan.khanh.618179" target="_blank">
+                            <img src="anh/logo/facebook.png" alt="Facebook">
+                        </a>
+
+                        <a href="https://www.instagram.com/durikan_01/" target="_blank">
+                            <img src="anh/logo/instagram.png" alt="Instagram">
+                        </a>
+
+                        <a href="https://www.tiktok.com/@jun_qing01" target="_blank">
+                            <img src="anh/logo/tiktok.png" alt="TikTok">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CỘT 2 -->
+                <div class="col-md-3">
+                    <h5>Liên kết</h5>
+                    <ul class="footer-link">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="category.html">Danh mục</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- CỘT 3 -->
+                <div class="col-md-3">
+                    <h5>Liên hệ</h5>
+                    <p>Email: tkw@gmail.com</p>
+                    <p>Phone: 0949 805 562</p>
+                    <p>Địa chỉ: Đồng Nai</p>
+
+                    <!-- NEWSLETTER -->
+                    <div class="newsletter mt-3">
+                        <input type="email" placeholder="Nhập email...">
+                        <button onclick="subscribe()">Đăng ký</button>
+                    </div>
+                </div>
+
+                <!-- CỘT 4 (MAP) -->
+                <div class="col-md-3">
+                    <h5>Vị trí cửa hàng</h5>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps?q=Đồng%20Nai&output=embed" width="100%" height="150"
+                            style="border:0;" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="bg-light">
+
+            <p class="text-center mb-0">
+                © 2026 Fashion Shop | All rights reserved <br>Designed by <a
+                    href="https://www.facebook.com/tuan.khanh.618179" target="_blank">Tuan Khanh</a> | 23-0-20076
+            </p>
+
+        </div>
     </footer>
+    <!-- CHAT (COPY INDEX) -->
+    <div id="chat-icon" onclick="toggleChat()">💬</div>
+
+    <div id="chat-box">
+        <div class="chat-header">
+            Hỗ trợ khách hàng
+            <span onclick="toggleChat()">✖</span>
+        </div>
+
+        <div class="chat-body" id="chat-body">
+            <p><b>Shop:</b> Xin chào!</p>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="chat-input">
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast-noti"></div>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function loadCart() {
+            const cart = getCart();
+            const cartList = document.getElementById("cart-list");
+            const emptyCart = document.getElementById("empty-cart");
+            const cartContainer = document.getElementById("cart-container");
+
+            updateCartCount();
+
+            if (cart.length === 0) {
+                emptyCart.style.display = "block";
+                cartContainer.style.display = "none";
+                return;
+            }
+
+            emptyCart.style.display = "none";
+            cartContainer.style.display = "block";
+
+            // Gom nhóm sản phẩm giống nhau
+            const grouped = {};
+            cart.forEach(item => {
+                const name = typeof item === "string" ? item : item.name;
+                const size = typeof item === "object" ? (item.size || "") : "";
+                const price = typeof item === "object" ? (item.price || 0) : 0;
+                const key = name + "__" + size;
+
+                if (!grouped[key]) {
+                    grouped[key] = { name, price, size, qty: 0, key };
+                }
+                grouped[key].qty++;
+            });
+
+            let html = "";
+            Object.values(grouped).forEach(item => {
+                const lineTotal = item.price * item.qty;
+                html += `
+                <li class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-meta">
+                            ${item.size ? `<span class="cart-size">Size: <b>${item.size}</b></span>` : ""}
+                            ${item.price ? `<span class="cart-price">${item.price.toLocaleString()}đ / cái</span>` : ""}
+                        </div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQty('${item.key}', -1)">−</button>
+                        <span class="qty-num">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty('${item.key}', 1)">+</button>
+                    </div>
+                    <div class="cart-item-total">
+                        ${lineTotal ? lineTotal.toLocaleString() + "đ" : ""}
+                    </div>
+                    <button class="cart-item-remove" onclick="removeItem('${item.key}')">✕</button>
+                </li>`;
+            });
+
+            cartList.innerHTML = html;
+            updateSummary(grouped);
+        }
+
+        function updateSummary(grouped) {
+            const items = Object.values(grouped);
+            const totalQty = items.reduce((s, i) => s + i.qty, 0);
+            const totalPrice = items.reduce((s, i) => s + i.price * i.qty, 0);
+            document.getElementById("total-items").innerText = totalQty + " sản phẩm";
+            document.getElementById("subtotal").innerText = totalPrice.toLocaleString() + "đ";
+            document.getElementById("grand-total").innerText = totalPrice.toLocaleString() + "đ";
+        }
+
+        function changeQty(key, delta) {
+            let cart = getCart();
+            const [name, size] = key.split("__");
+
+            if (delta === -1) {
+                const idx = cart.findIndex(item => {
+                    const n = typeof item === "string" ? item : item.name;
+                    const s = typeof item === "object" ? (item.size || "") : "";
+                    return n === name && s === size;
+                });
+                if (idx !== -1) cart.splice(idx, 1);
+            } else {
+                const sample = cart.find(item => {
+                    const n = typeof item === "string" ? item : item.name;
+                    const s = typeof item === "object" ? (item.size || "") : "";
+                    return n === name && s === size;
+                });
+                if (sample) cart.push(JSON.parse(JSON.stringify(sample)));
+            }
+
+            saveCart(cart);
+            loadCart();
+        }
+
+        function removeItem(key) {
+            const [name, size] = key.split("__");
+            let cart = getCart().filter(item => {
+                const n = typeof item === "string" ? item : item.name;
+                const s = typeof item === "object" ? (item.size || "") : "";
+                return !(n === name && s === size);
+            });
+            saveCart(cart);
+            showToast("Đã xóa sản phẩm khỏi giỏ 🗑️");
+            loadCart();
+        }
+
+        function clearCart() {
+            if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")) {
+                saveCart([]);
+                showToast("Đã xóa toàn bộ giỏ hàng!");
+                loadCart();
+            }
+        }
+
+        function checkout() {
+            alert("🎉 Cảm ơn bạn đã đặt hàng!\nChúng tôi sẽ liên hệ sớm nhất.");
+            saveCart([]);
+            loadCart();
+        }
+
+        document.addEventListener("DOMContentLoaded", loadCart);
+    </script>
+
 </body>
 
 </html>

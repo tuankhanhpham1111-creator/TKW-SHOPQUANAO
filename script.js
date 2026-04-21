@@ -28,9 +28,15 @@ function showToast(message) {
 }
 
 // ===== THÊM GIỎ =====
-function addToCartFromCard(name) {
+function addToCartFromCard(product) {
   const cart = getCart();
-  cart.push(name);
+
+  cart.push({
+    name: product.name,
+    price: product.price,
+    size: "M", // mặc định (vì index chưa chọn size)
+    quantity: 1
+  });
   saveCart(cart);
   updateCartCount();
 
@@ -85,31 +91,37 @@ function searchProduct() {
 }
 // Mở / đóng chat
 function toggleChat() {
-  let box = document.getElementById("chat-box");
-  box.style.display = box.style.display === "flex" ? "none" : "flex";
+  const box = document.getElementById("chat-box");
+  const icon = document.getElementById("chat-icon");
+
+  if (!box || !icon) return;
+
+  box.classList.toggle("open");
+  icon.classList.toggle("active");
 }
+
 
 // Gửi tin nhắn
 function sendMessage() {
-  let input = document.getElementById("chat-input");
-  let message = input.value.trim();
+  const input = document.getElementById("chat-input");
+  const chatBody = document.getElementById("chat-body");
 
+  if (!input || !chatBody) return;
+
+  const message = input.value.trim();
   if (message === "") return;
 
-  let chatBody = document.getElementById("chat-body");
+  chatBody.innerHTML += `<div class="chat-msg user">${message}</div>`;
 
-  // Tin nhắn user
-  chatBody.innerHTML += `<p><b>Bạn:</b> ${message}</p>`;
-
-  // Auto reply đơn giản
   setTimeout(() => {
-    chatBody.innerHTML += `<p><b>Shop:</b> Cảm ơn bạn đã nhắn tin!</p>`;
+    chatBody.innerHTML += `<div class="chat-msg shop">Cảm ơn bạn đã nhắn tin!</div>`;
     chatBody.scrollTop = chatBody.scrollHeight;
   }, 500);
 
   input.value = "";
   chatBody.scrollTop = chatBody.scrollHeight;
 }
+
 // Đăng ký nhận tin
 function subscribe() {
   let email = document.querySelector(".newsletter input").value.trim();
